@@ -10,4 +10,6 @@ public interface NoteService {
 void createNote(CreateNoteRequest request);
 
     List<Note> getAllNotes();
+
+    Note getNoteById(long id);
 }

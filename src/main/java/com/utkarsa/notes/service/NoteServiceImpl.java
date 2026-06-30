@@ -38,5 +38,10 @@ private final NoteRepository noteRepository;
         return noteRepository.findAll();
     }
 
+    @Override
+    public Note getNoteById(long id) {
+        return noteRepository.findById(id).orElse(null);
+    }
+
 }
 

@@ -7,12 +7,13 @@ import jakarta.persistence.Id;
 import java.time.LocalDateTime;
 import lombok.*;
 
-@Entity
+
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@Entity
 public class Note {
 
     @Id

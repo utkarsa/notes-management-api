@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class NoteController {
     private final NoteService noteService;
 
-    @PostMapping
+    @PostMapping("create")
     public void createNote(@RequestBody CreateNoteRequest request) {
         noteService.createNote(request);
 

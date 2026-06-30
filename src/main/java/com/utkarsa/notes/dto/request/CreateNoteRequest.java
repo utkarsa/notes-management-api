@@ -10,5 +10,5 @@ import lombok.*;
 public class CreateNoteRequest {
     private String title;
     private String content;
-    private boolean isPinned;
+    private boolean pinned;
 }

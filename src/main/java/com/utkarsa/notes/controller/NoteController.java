@@ -1,12 +1,12 @@
 package com.utkarsa.notes.controller;
 
 import com.utkarsa.notes.dto.request.CreateNoteRequest;
+import com.utkarsa.notes.entity.Note;
 import com.utkarsa.notes.service.NoteService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/notes")
@@ -18,5 +18,10 @@ public class NoteController {
     public void createNote(@RequestBody CreateNoteRequest request) {
         noteService.createNote(request);
 
+    }
+
+    @GetMapping("getAll")
+    public List<Note> getAllNotes() {
+        return noteService.getAllNotes();
     }
 }

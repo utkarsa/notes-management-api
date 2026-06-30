@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -32,5 +33,10 @@ private final NoteRepository noteRepository;
             noteRepository.save(note);
         }
 
+    @Override
+    public List<Note> getAllNotes() {
+        return noteRepository.findAll();
     }
+
+}
 

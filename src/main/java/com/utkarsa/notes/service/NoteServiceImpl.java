@@ -73,5 +73,10 @@ private final NoteRepository noteRepository;
         noteRepository.save(note);
     }
 
+    @Override
+    public void deleteNotePerm(long id) {
+        noteRepository.deleteById(id);
+    }
+
 }
 

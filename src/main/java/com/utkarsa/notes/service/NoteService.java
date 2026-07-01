@@ -16,4 +16,6 @@ void createNote(CreateNoteRequest request);
     Note updateNote(long id, CreateNoteRequest request);
 
     void deleteNote(long id);
+
+    void deleteNotePerm(long id);
 }

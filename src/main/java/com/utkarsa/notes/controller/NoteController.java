@@ -40,4 +40,9 @@ public class NoteController {
     public void deleteNote(@PathVariable long id) {
         noteService.deleteNote(id);
     }
+
+    @DeleteMapping("permDelete/{id}")
+    public void deleteNotePerm (@PathVariable long id) {
+        noteService.deleteNotePerm(id);
+    }
 }

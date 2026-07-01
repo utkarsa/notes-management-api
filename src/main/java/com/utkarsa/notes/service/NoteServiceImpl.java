@@ -36,12 +36,20 @@ private final NoteRepository noteRepository;
 
     @Override
     public List<Note> getAllNotes() {
-        return noteRepository.findAll();
+      //  return noteRepository.findAll();
+        return noteRepository.findByIsDeletedFalse();
     }
 
     @Override
     public Note getNoteById(long id) {
-        return noteRepository.findById(id).orElse(null);
+     //   return noteRepository.findById(id).orElse(null);
+        Note note = noteRepository.findById(id).orElse(null);
+
+        if (note == null || note.isDeleted()) {
+            return null;
+        }
+
+        return note;
     }
 
     @Override
@@ -81,7 +89,8 @@ private final NoteRepository noteRepository;
 
     @Override
     public List<Note> searchNotes(String title) {
-        return noteRepository.findByTitleContainingIgnoreCase(title);
+     // return noteRepository.findByTitleContainingIgnoreCase(title);
+        return noteRepository.findByTitleContainingIgnoreCaseAndIsDeletedFalse(title);
     }
 
     @Override
@@ -94,5 +103,7 @@ private final NoteRepository noteRepository;
     public List<Note> getAllNotesSorted(String sortBy) {
         return noteRepository.findAll(Sort.by(sortBy));
     }
+
+
 }
 

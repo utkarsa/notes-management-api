@@ -8,4 +8,8 @@ import java.util.List;
 public interface NoteRepository extends JpaRepository<Note, Long> {
 
     List<Note> findByTitleContainingIgnoreCase(String title);
+
+    List<Note> findByIsDeletedFalse();
+
+    List<Note> findByTitleContainingIgnoreCaseAndIsDeletedFalse(String title);
 }

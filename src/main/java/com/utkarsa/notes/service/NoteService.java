@@ -3,6 +3,7 @@ package com.utkarsa.notes.service;
 
 import com.utkarsa.notes.dto.request.CreateNoteRequest;
 import com.utkarsa.notes.entity.Note;
+import org.springframework.data.domain.Page;
 
 import java.util.List;
 
@@ -20,4 +21,6 @@ void createNote(CreateNoteRequest request);
     void deleteNotePerm(long id);
 
     List<Note> searchNotes(String title);
+
+    Page<Note> getAllNotesPaginated(int page, int size);
 }

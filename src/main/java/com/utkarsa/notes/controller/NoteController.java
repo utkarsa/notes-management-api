@@ -3,6 +3,7 @@ package com.utkarsa.notes.controller;
 import com.utkarsa.notes.dto.request.CreateNoteRequest;
 import com.utkarsa.notes.entity.Note;
 import com.utkarsa.notes.service.NoteService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,7 +16,7 @@ public class NoteController {
     private final NoteService noteService;
 
     @PostMapping("create")
-    public void createNote(@RequestBody CreateNoteRequest request) {
+    public void createNote(@Valid @RequestBody CreateNoteRequest request) {
         noteService.createNote(request);
 
     }

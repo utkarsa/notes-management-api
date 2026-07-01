@@ -43,5 +43,35 @@ private final NoteRepository noteRepository;
         return noteRepository.findById(id).orElse(null);
     }
 
+    @Override
+    public Note updateNote(long id, CreateNoteRequest request) {
+        Note note = noteRepository.findById(id).orElse(null);
+
+        if (note == null) {
+            return null;
+        }
+
+        note.setTitle(request.getTitle());
+        note.setContent(request.getContent());
+        note.setPinned(request.isPinned());
+
+        note.setUpdatedAt(LocalDateTime.now());
+
+        return noteRepository.save(note);
+    }
+
+    @Override
+    public void deleteNote(long id) {
+        Note note = noteRepository.findById(id).orElse(null);
+
+        if (note == null) {
+            return;
+        }
+
+        note.setDeleted(true);
+        note.setUpdatedAt(LocalDateTime.now());
+        noteRepository.save(note);
+    }
+
 }
 

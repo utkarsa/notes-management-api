@@ -12,4 +12,8 @@ void createNote(CreateNoteRequest request);
     List<Note> getAllNotes();
 
     Note getNoteById(long id);
+
+    Note updateNote(long id, CreateNoteRequest request);
+
+    void deleteNote(long id);
 }

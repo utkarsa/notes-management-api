@@ -23,4 +23,6 @@ void createNote(CreateNoteRequest request);
     List<Note> searchNotes(String title);
 
     Page<Note> getAllNotesPaginated(int page, int size);
+
+    List<Note> getAllNotesSorted(String sortBy);
 }

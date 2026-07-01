@@ -4,11 +4,8 @@ import com.utkarsa.notes.dto.request.CreateNoteRequest;
 import com.utkarsa.notes.entity.Note;
 import com.utkarsa.notes.repository.NoteRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
+import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.PageRequest;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -93,5 +90,9 @@ private final NoteRepository noteRepository;
         return noteRepository.findAll(pageable);
     }
 
+    @Override
+    public List<Note> getAllNotesSorted(String sortBy) {
+        return noteRepository.findAll(Sort.by(sortBy));
+    }
 }
 

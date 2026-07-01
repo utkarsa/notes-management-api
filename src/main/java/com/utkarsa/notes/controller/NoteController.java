@@ -60,4 +60,9 @@ public class NoteController {
 
         return noteService.getAllNotesPaginated(page, size);
     }
+
+    @GetMapping("getAllSorted")
+    public List<Note> getAllNotesSorted(@RequestParam String sortBy) {
+        return noteService.getAllNotesSorted(sortBy);
+    }
 }

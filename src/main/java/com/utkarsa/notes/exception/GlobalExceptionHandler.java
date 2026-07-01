@@ -11,4 +11,9 @@ public class GlobalExceptionHandler {
     public String handleValidationException(MethodArgumentNotValidException ex) {
         return ex.getBindingResult().getFieldError().getDefaultMessage();
     }
+
+    @ExceptionHandler(NoteNotFoundException.class)
+    public String handleNoteNotFoundException(NoteNotFoundException ex) {
+        return ex.getMessage();
+    }
 }

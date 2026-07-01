@@ -2,6 +2,7 @@ package com.utkarsa.notes.service;
 
 import com.utkarsa.notes.dto.request.CreateNoteRequest;
 import com.utkarsa.notes.entity.Note;
+import com.utkarsa.notes.exception.NoteNotFoundException;
 import com.utkarsa.notes.repository.NoteRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.*;
@@ -39,10 +40,11 @@ private final NoteRepository noteRepository;
       //  return noteRepository.findAll();
         return noteRepository.findByIsDeletedFalse();
     }
-
+/*
     @Override
     public Note getNoteById(long id) {
-     //   return noteRepository.findById(id).orElse(null);
+       return noteRepository.findById(id).orElse(null);
+
         Note note = noteRepository.findById(id).orElse(null);
 
         if (note == null || note.isDeleted()) {
@@ -51,7 +53,21 @@ private final NoteRepository noteRepository;
 
         return note;
     }
+*/
 
+@Override
+public Note getNoteById(long id) {
+
+    Note note = noteRepository.findById(id)
+            .orElseThrow(() -> new NoteNotFoundException("Note not found"));
+
+    if (note.isDeleted()) {
+        throw new NoteNotFoundException("Note not found");
+    }
+
+    return note;
+}
+/*
     @Override
     public Note updateNote(long id, CreateNoteRequest request) {
         Note note = noteRepository.findById(id).orElse(null);
@@ -68,10 +84,25 @@ private final NoteRepository noteRepository;
 
         return noteRepository.save(note);
     }
+*/
+@Override
+public Note updateNote(long id, CreateNoteRequest request) {
 
+    Note note = noteRepository.findById(id)
+            .orElseThrow(() -> new NoteNotFoundException("Note not found"));
+
+    note.setTitle(request.getTitle());
+    note.setContent(request.getContent());
+    note.setPinned(request.isPinned());
+    note.setUpdatedAt(LocalDateTime.now());
+
+    return noteRepository.save(note);
+}
+   /*
     @Override
     public void deleteNote(long id) {
         Note note = noteRepository.findById(id).orElse(null);
+
 
         if (note == null) {
             return;
@@ -81,12 +112,32 @@ private final NoteRepository noteRepository;
         note.setUpdatedAt(LocalDateTime.now());
         noteRepository.save(note);
     }
+*/
+   @Override
+   public void deleteNote(long id) {
 
+       Note note = noteRepository.findById(id)
+               .orElseThrow(() -> new NoteNotFoundException("Note not found"));
+
+       note.setDeleted(true);
+       note.setUpdatedAt(LocalDateTime.now());
+
+       noteRepository.save(note);
+   }
+   /*
     @Override
     public void deleteNotePerm(long id) {
         noteRepository.deleteById(id);
     }
+*/
+   @Override
+   public void deleteNotePerm(long id) {
 
+       Note note = noteRepository.findById(id)
+               .orElseThrow(() -> new NoteNotFoundException("Note not found"));
+
+       noteRepository.delete(note);
+   }
     @Override
     public List<Note> searchNotes(String title) {
      // return noteRepository.findByTitleContainingIgnoreCase(title);

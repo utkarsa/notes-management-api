@@ -78,5 +78,10 @@ private final NoteRepository noteRepository;
         noteRepository.deleteById(id);
     }
 
+    @Override
+    public List<Note> searchNotes(String title) {
+        return noteRepository.findByTitleContainingIgnoreCase(title);
+    }
+
 }
 

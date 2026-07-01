@@ -46,4 +46,9 @@ public class NoteController {
     public void deleteNotePerm (@PathVariable long id) {
         noteService.deleteNotePerm(id);
     }
+
+    @GetMapping("search")
+    public List<Note> searchNotes(@RequestParam String title) {
+        return noteService.searchNotes(title);
+    }
 }

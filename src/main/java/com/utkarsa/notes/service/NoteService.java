@@ -18,4 +18,6 @@ void createNote(CreateNoteRequest request);
     void deleteNote(long id);
 
     void deleteNotePerm(long id);
+
+    List<Note> searchNotes(String title);
 }

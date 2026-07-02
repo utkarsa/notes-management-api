@@ -9,7 +9,7 @@ import org.springframework.data.domain.Page;
 import java.util.List;
 
 public interface NoteService {
-void createNote(CreateNoteRequest request);
+    void createNote(CreateNoteRequest request);
 
     //List<Note> getAllNotes();
     List<NoteResponse> getAllNotes();
@@ -25,8 +25,8 @@ void createNote(CreateNoteRequest request);
 
     List<Note> searchNotes(String title);
 
-   // Page<Note> getAllNotesPaginated(int page, int size);
-   Page<NoteResponse> getAllNotesPaginated(int page, int size);
+    // Page<Note> getAllNotesPaginated(int page, int size);
+    Page<NoteResponse> getAllNotesPaginated(int page, int size);
 
     List<Note> getAllNotesSorted(String sortBy);
 }

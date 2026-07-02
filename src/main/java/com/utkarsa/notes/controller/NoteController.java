@@ -1,13 +1,13 @@
 package com.utkarsa.notes.controller;
 
 import com.utkarsa.notes.dto.request.CreateNoteRequest;
+import com.utkarsa.notes.dto.response.NoteResponse;
 import com.utkarsa.notes.entity.Note;
 import com.utkarsa.notes.service.NoteService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
-import com.utkarsa.notes.dto.response.NoteResponse;
 
 import java.util.List;
 
@@ -22,16 +22,18 @@ public class NoteController {
         noteService.createNote(request);
 
     }
-/*
+
+    /*
+        @GetMapping("getAll")
+        public List<Note> getAllNotes() {
+            return noteService.getAllNotes();
+        }
+    */
     @GetMapping("getAll")
-    public List<Note> getAllNotes() {
+    public List<NoteResponse> getAllNotes() {
         return noteService.getAllNotes();
     }
-*/
-@GetMapping("getAll")
-public List<NoteResponse> getAllNotes() {
-    return noteService.getAllNotes();
-}
+
     /*@GetMapping("getById/{id}")
     public Note getNoteById(@PathVariable long id) {
 
@@ -58,7 +60,7 @@ public List<NoteResponse> getAllNotes() {
     }
 
     @DeleteMapping("permDelete/{id}")
-    public void deleteNotePerm (@PathVariable long id) {
+    public void deleteNotePerm(@PathVariable long id) {
         noteService.deleteNotePerm(id);
 
     }
@@ -68,15 +70,16 @@ public List<NoteResponse> getAllNotes() {
         return noteService.searchNotes(title);
 
     }
-/*
-    @GetMapping("getAllPaginated")
-    public Page<Note> getAllNotesPaginated(
-            @RequestParam int page,
-            @RequestParam int size) {
 
-        return noteService.getAllNotesPaginated(page, size);
-    }
-*/
+    /*
+        @GetMapping("getAllPaginated")
+        public Page<Note> getAllNotesPaginated(
+                @RequestParam int page,
+                @RequestParam int size) {
+
+            return noteService.getAllNotesPaginated(page, size);
+        }
+    */
     @GetMapping("getAllPaginated")
     public Page<NoteResponse> getAllNotesPaginated(
             @RequestParam int page,

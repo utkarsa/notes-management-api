@@ -10,7 +10,7 @@ import lombok.*;
 @AllArgsConstructor
 @Builder
 public class CreateNoteRequest {
-     @NotBlank(message = "Title cannot be empty")
+    @NotBlank(message = "Title cannot be empty")
     @Size(max = 100, message = "Title cannot exceed 100 characters")
     private String title;
 

@@ -7,6 +7,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
+import com.utkarsa.notes.dto.response.NoteResponse;
 
 import java.util.List;
 
@@ -21,44 +22,68 @@ public class NoteController {
         noteService.createNote(request);
 
     }
-
+/*
     @GetMapping("getAll")
     public List<Note> getAllNotes() {
         return noteService.getAllNotes();
     }
-
-    @GetMapping("getById/{id}")
+*/
+@GetMapping("getAll")
+public List<NoteResponse> getAllNotes() {
+    return noteService.getAllNotes();
+}
+    /*@GetMapping("getById/{id}")
     public Note getNoteById(@PathVariable long id) {
+
         return noteService.getNoteById(id);
+    }*/
+    @GetMapping("getById/{id}")
+    public NoteResponse getNoteById(@PathVariable long id) {
+
+        return noteService.getNoteById(id);
+
     }
 
     @PutMapping("update/{id}")
     public Note updateNote(@PathVariable long id,
                            @RequestBody CreateNoteRequest request) {
         return noteService.updateNote(id, request);
+
     }
 
     @DeleteMapping("delete/{id}")
     public void deleteNote(@PathVariable long id) {
         noteService.deleteNote(id);
+
     }
 
     @DeleteMapping("permDelete/{id}")
     public void deleteNotePerm (@PathVariable long id) {
         noteService.deleteNotePerm(id);
+
     }
 
     @GetMapping("search")
     public List<Note> searchNotes(@RequestParam String title) {
         return noteService.searchNotes(title);
-    }
 
+    }
+/*
     @GetMapping("getAllPaginated")
     public Page<Note> getAllNotesPaginated(
             @RequestParam int page,
             @RequestParam int size) {
 
         return noteService.getAllNotesPaginated(page, size);
+    }
+*/
+    @GetMapping("getAllPaginated")
+    public Page<NoteResponse> getAllNotesPaginated(
+            @RequestParam int page,
+            @RequestParam int size) {
+
+        return noteService.getAllNotesPaginated(page, size);
+
     }
 
     @GetMapping("getAllSorted")
